@@ -21,56 +21,76 @@ const products = [
     },
 ];
 
-console.log(products[1].productImageSrc);
 
 const elements = {
+    // Product imgs
     productLis: document.querySelectorAll('#products-imgs-small li'),
     productImgsSmall: document.querySelectorAll('#products-imgs-small li img'),
-    quantityMinus: document.querySelector('#quantity .bi-dash'),
+
+    // Quantity
+    quantityContainer: document.querySelector('.product-infos-container'),
+    quantityMinus: document.querySelector('#quantity #minus'),
     quantityPara: document.querySelector('#quantity span'),
-    quantityPlus: document.querySelector('#quantity .bi-plus'),
+    quantityPlus: document.querySelector('#quantity #plus'),
+    warningPara: document.createElement('span'),
 }
 
 
 
+/***EVEN LISTENERS***/
 // Je veux retirer l'event listener lorsque je clique sur une autre image
 function productsImagesEvent() {
 
     // Je boucle sur tout mes éléments
-    elements.productLis.forEach(function(productLi) { productLi.addEventListener('click', function () {
-        
-        productLi.classList.add('wrapper');
-    })});
-    
-    elements.productImgsSmall.forEach(function(productImageSmall) { productImageSmall.addEventListener('click', function () {
-        
-        productImageSmall.classList.add('active-img');
-    })});
+    elements.productLis.forEach(function (productLi) {
+        productLi.addEventListener('click', function () {
+
+            productLi.classList.add('wrapper');
+        })
+    });
+
+    elements.productImgsSmall.forEach(function (productImageSmall) {
+        productImageSmall.addEventListener('click', function () {
+
+            productImageSmall.classList.add('active-img');
+        })
+    });
 }
 
 productsImagesEvent();
 
 
-// QUANTITY
-let count = 0;
 
+// QUANTITY
 function quantity() {
 
-    elements.quantityMinus.addEventListener('click', function() {
+    let count = 0;
 
-        for(let count = 0; count < elements.quantityMinus; count--) {
+    elements.quantityMinus.addEventListener('click', function () {
 
-            elements.quantityPara.textContent = count - 1;
-            console.log(count);
+        count -= 1;
+        elements.quantityPara.textContent = count;
+
+        // Lorsque la quantité désirée pour l'article atteint zéro...
+        if (count === 0) {
+            elements.quantityMinus.setAttribute('disabled', true); //Je déclare l'attribut 'disabled' à true au bouton
         }
     });
 
-    elements.quantityPlus.addEventListener('click', function() {
+    // Augmente la quantité
+    elements.quantityPlus.addEventListener('click', function () {
 
-        for(let count = 0; count < elements.quantityPlus; count++) {
+        count += 1;
+        elements.quantityPara.textContent = count;
 
-            elements.quantityPara.textContent = count + 1;
-            console.log(count);
+        if (count >= 2) {
+            elements.quantityPlus.setAttribute('disabled', true); //Je déclare l'attribut 'disabled' à true au bouton
+
+            elements.warningPara.style.color = 'firebrick';
+            elements.warningPara.style.marginTop = '15px';
+            elements.warningPara.textContent = 'Limite de 2 articles par client.';
+
+            elements.quantityContainer.append(elements.warningPara);
         }
     });
 }
