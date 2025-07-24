@@ -1,0 +1,164 @@
+/* FONTS */
+.kumbh-sans-400 {
+    font-family: "Kumbh Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "YOPQ" 300;
+}
+
+.kumbh-sans-700 {
+    font-family: "Kumbh Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+        "YOPQ" 300;
+}
+
+
+/* GENERAL */
+p,
+a {
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+/************
+    CODE
+************/
+/* NAV */
+nav {
+    align-items: center;
+    justify-content: center;
+}
+
+#nav-figure {
+    width: 10%;
+}
+
+#navbarNav {
+    display: flex;
+    align-items: center;
+}
+
+hr {
+    width: 80%;
+    border-color: hsl(219, 9%, 45%);
+}
+
+
+/* CONTAINER */
+.container {
+    max-width: 1080px;
+}
+
+
+/* IMGS-CONTAINER */
+.container .imgs-container>figure {
+    width: 74%;
+}
+
+.container .imgs-container figure>img {
+    width: 100%;
+}
+
+.container .imgs-container ul>li {
+    width: 15%;
+}
+
+.container .imgs-container ul li>img {
+    width: 100%;
+}
+
+
+/* PRODUCT INFOS (CONTAINER) */
+.product-infos-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.product-infos-container>.sneakers-company {
+    letter-spacing: 0.2rem;
+    color: hsl(219, 9%, 45%);
+}
+
+.og-price {
+    color: hsl(219, 9%, 45%);
+}
+
+
+/* QUANTITY BTN */
+#quantity {
+    background-color: hsl(223, 64%, 98%);
+}
+
+
+/* ADD TO CART BTN */
+#add-to-cart {
+    background-color: hsl(26, 100%, 55%);
+    border: 1px solid hsl(26, 100%, 55%);
+    padding: 15px 75px 15px 75px;
+    margin-left: 1rem;
+}
+
+/*Icons*/
+.bi-dash,
+.bi-plus {
+    color: hsl(26, 100%, 55%);
+    -webkit-text-stroke: 2px;
+    padding: 0px 30px 0px 30px;
+}
+
+
+/* ACTIVE IMG */
+.wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.wrapper:after {
+    content: "";
+    border-radius: 1rem;
+    background: rgb(255, 237, 224, .3);
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+
+.active-img {
+    border: 2px solid hsl(26, 100%, 55%);
+}
+
+
+/* Hover */
+#products-imgs-small li>img:hover {
+    cursor: pointer;
+}
+
+#products-imgs-small li:hover {
+    box-shadow: inset 0 0 rgb(255, 237, 224, .6);
+}
