@@ -114,13 +114,9 @@ hr {
     background-color: hsl(223, 64%, 98%);
 }
 
-
-/* ADD TO CART BTN */
-#add-to-cart {
-    background-color: hsl(26, 100%, 55%);
-    border: 1px solid hsl(26, 100%, 55%);
-    padding: 15px 75px 15px 75px;
-    margin-left: 1rem;
+#minus, #plus {
+    background-color: hsl(223, 64%, 98%);
+    border: 1px solid hsl(223, 64%, 98%);
 }
 
 /*Icons*/
@@ -129,6 +125,15 @@ hr {
     color: hsl(26, 100%, 55%);
     -webkit-text-stroke: 2px;
     padding: 0px 30px 0px 30px;
+}
+
+
+/* ADD TO CART BTN */
+#add-to-cart {
+    background-color: hsl(26, 100%, 55%);
+    border: 1px solid hsl(26, 100%, 55%);
+    padding: 15px 75px 15px 75px;
+    margin-left: 1rem;
 }
 
 
