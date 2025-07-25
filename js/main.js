@@ -31,7 +31,10 @@ const quantityElements = {
 }
 
 
+
 /***EVEN LISTENERS***/
+
+// PRODUCT LIST
 const productList = document.querySelectorAll('#products-imgs-small li'); //Renvoie une NodeList, soit un tableau contenant tout les éléments lis.
 
 productList.forEach(function(product) { // Je boucle sur mon tableau productList
@@ -39,6 +42,13 @@ productList.forEach(function(product) { // Je boucle sur mon tableau productList
     // J'ajoute un évènement de click au produit
     product.addEventListener('click', function() {
 
+        /*
+        - Ici la fonction removeClass va parcourir tout les éléments, lorsque je vais cliquer sur un élément, il prendra la classe
+        'active-style', si je clique sur un autre élément, la fonction removeClass() va parcourir tout les éléments et supprimer
+        la classe 'active-style' de l'élément qui l'avait obtenu avant.
+        
+        - Enfin, j'ajoute la classe 'active-style' à l'élément sur lequel j'ai cliqué.
+        */
         removeClass(); // J'appelle ma fonction removeClass()
         product.classList.add('active-style'); // Puis j'ajoute la classe à l'élément cliqué
     })
