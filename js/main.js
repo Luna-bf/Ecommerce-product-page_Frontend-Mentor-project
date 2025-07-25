@@ -1,3 +1,4 @@
+/***OBJECTS***/
 const products = [
     {
         id: 1,
@@ -21,13 +22,7 @@ const products = [
     },
 ];
 
-
-const elements = {
-    // Product imgs
-    productLis: document.querySelectorAll('#products-imgs-small li'),
-    productImgsSmall: document.querySelectorAll('#products-imgs-small li img'),
-
-    // Quantity
+const quantityElements = {
     quantityContainer: document.querySelector('.product-infos-container'),
     quantityMinus: document.querySelector('#quantity #minus'),
     quantityPara: document.querySelector('#quantity span'),
@@ -36,29 +31,26 @@ const elements = {
 }
 
 
-
 /***EVEN LISTENERS***/
-// Je veux retirer l'event listener lorsque je clique sur une autre image
-function productsImagesEvent() {
+const productList = document.querySelectorAll('#products-imgs-small li'); //Renvoie une NodeList, soit un tableau contenant tout les éléments lis.
 
-    // Je boucle sur tout mes éléments
-    elements.productLis.forEach(function (productLi) {
-        productLi.addEventListener('click', function () {
+productList.forEach(function(product) { // Je boucle sur mon tableau productList
 
-            productLi.classList.add('wrapper');
-        })
-    });
+    // J'ajoute un évènement de click au produit
+    product.addEventListener('click', function() {
 
-    elements.productImgsSmall.forEach(function (productImageSmall) {
-        productImageSmall.addEventListener('click', function () {
+        removeClass(); // J'appelle ma fonction removeClass()
+        product.classList.add('active-style'); // Puis j'ajoute la classe à l'élément cliqué
+    })
+});
 
-            productImageSmall.classList.add('active-img');
-        })
+function removeClass() {
+
+    productList.forEach(function(product) { // Je parcours mon tableau productList
+
+        product.classList.remove('active-style'); // Si l'un des produit a la classe 'active-style', je la supprime
     });
 }
-
-productsImagesEvent();
-
 
 
 // QUANTITY
@@ -66,31 +58,31 @@ function quantity() {
 
     let count = 0;
 
-    elements.quantityMinus.addEventListener('click', function () {
+    quantityElements.quantityMinus.addEventListener('click', function () {
 
         count -= 1;
-        elements.quantityPara.textContent = count;
+        quantityElements.quantityPara.textContent = count;
 
         // Lorsque la quantité désirée pour l'article atteint zéro...
         if (count === 0) {
-            elements.quantityMinus.setAttribute('disabled', true); //Je déclare l'attribut 'disabled' à true au bouton
+            quantityElements.quantityMinus.setAttribute('disabled', true); //Je déclare l'attribut 'disabled' à true au bouton
         }
     });
 
     // Augmente la quantité
-    elements.quantityPlus.addEventListener('click', function () {
+    quantityElements.quantityPlus.addEventListener('click', function () {
 
         count += 1;
-        elements.quantityPara.textContent = count;
+        quantityElements.quantityPara.textContent = count;
 
         if (count >= 2) {
-            elements.quantityPlus.setAttribute('disabled', true); //Je déclare l'attribut 'disabled' à true au bouton
+            quantityElements.quantityPlus.setAttribute('disabled', true); //Je déclare l'attribut 'disabled' à true au bouton
 
-            elements.warningPara.style.color = 'firebrick';
-            elements.warningPara.style.marginTop = '15px';
-            elements.warningPara.textContent = 'Limite de 2 articles par client.';
+            quantityElements.warningPara.style.color = 'firebrick';
+            quantityElements.warningPara.style.marginTop = '15px';
+            quantityElements.warningPara.textContent = 'Limit 2 per customers.';
 
-            elements.quantityContainer.append(elements.warningPara);
+            quantityElements.quantityContainer.append(quantityElements.warningPara);
         }
     });
 }
