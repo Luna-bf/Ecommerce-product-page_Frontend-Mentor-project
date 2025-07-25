@@ -75,7 +75,7 @@ hr {
 
 /* IMGS-CONTAINER */
 .container .imgs-container>figure {
-    width: 74%;
+    width: 70%;
 }
 
 .container .imgs-container figure>img {
@@ -83,7 +83,7 @@ hr {
 }
 
 .container .imgs-container ul>li {
-    width: 15%;
+    width: 12%;
 }
 
 .container .imgs-container ul li>img {
@@ -102,6 +102,7 @@ hr {
 .product-infos-container>.sneakers-company {
     letter-spacing: 0.2rem;
     color: hsl(219, 9%, 45%);
+    font-size: 14px;
 }
 
 .og-price {
@@ -127,6 +128,10 @@ hr {
     padding: 0px 30px 0px 30px;
 }
 
+.bi-dash:hover, .bi-plus:hover {
+    color: hsl(28, 100%, 71%);
+}
+
 
 /* ADD TO CART BTN */
 #add-to-cart {
@@ -134,6 +139,11 @@ hr {
     border: 1px solid hsl(26, 100%, 55%);
     padding: 15px 75px 15px 75px;
     margin-left: 1rem;
+}
+
+#add-to-cart:hover {
+    background-color: hsl(28, 100%, 71%);
+    border: 1px solid hsl(28, 100%, 71%);
 }
 
 
