@@ -176,11 +176,11 @@ hr {
 
 
 /* Hover */
-#products-imgs-small>li {
+.products-imgs-small>li {
     position: relative;
 }
 
-#products-imgs-small li>img {
+.products-imgs-small li>img {
     display: block;
     width: 100%;
     height: auto;
@@ -188,12 +188,43 @@ hr {
     backface-visibility: hidden;
 }
 
-#products-imgs-small li>img:after {
+.products-imgs-small li>img:after {
     opacity: 0;
     background: rgb(255, 237, 224, 1);
 }
 
-#products-imgs-small li:hover img {
+.products-imgs-small li:hover img {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+
+
+/*** CAROUSEL ***/
+.carousel-container {
+    position: relative;
+    z-index: 10;
+    display: none;
+}
+
+.carousel-imgs-small>li {
+    position: relative;
+}
+
+.carousel-imgs-small li>img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    backface-visibility: hidden;
+}
+
+.carousel-imgs-small li>img:after {
+    opacity: 0;
+    background: rgb(255, 237, 224, 1);
+}
+
+.carousel-imgs-small li:hover img {
     cursor: pointer;
     opacity: 0.5;
 }
