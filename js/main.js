@@ -34,10 +34,11 @@ const productsImages = [
 
 // Carousel
 const carouselElements = {
-    carouselContainer: document.getElementById('carousel-container'),
+    carouselContainer: document.querySelector('#carousel-container'),
     carouselImage: document.querySelectorAll('.carousel-img-container img'),
-    carouselThumbnail: document.querySelectorAll('.carousel-imgs-small li img'),
+    carouselThumbnail: document.querySelectorAll('#carousel-imgs-small li img'),
 };
+
 
 // Quantity
 const quantityElements = {
@@ -55,6 +56,7 @@ const quantityElements = {
 // PRODUCT LIST
 const productListThumbnails = document.querySelectorAll('.products-imgs-small li img');
 const productList = document.querySelectorAll('.products-imgs-small li'); //Renvoie une NodeList, soit un tableau contenant tout les éléments lis.
+const carouselItem = document.querySelectorAll('.carousel-inner .carousel-item');
 
 
 productList.forEach(function (product) { // Je boucle sur mon tableau productList
@@ -76,27 +78,51 @@ productList.forEach(function (product) { // Je boucle sur mon tableau productLis
         
         - Enfin, j'ajoute la classe 'active-style' à l'élément sur lequel j'ai cliqué.
         */
-        removeClass(); // J'appelle ma fonction removeClass()
+        removeClass('active-style', productList); // J'appelle ma fonction removeClass(style, parentElement)
         product.classList.add('active-style'); // Puis j'ajoute la classe à l'élément cliqué
 
-        makeCarouselVisible(); // J'appelle la fonction makeCarouselVisible pour l'afficher
-    })
+        const img = this.querySelector('img'); //Image sur laquelle on a cliqué
+        const imgSrc = img.getAttribute('src');
+
+        makeCarouselVisible(imgSrc); // J'appelle la fonction makeCarouselVisible pour l'afficher
+    });
 });
 
 
 
 // removeClass()
-function removeClass() {
+function removeClass(style, parentElement) { // Donner des noms génériques au paramètres permet de rendre la fonction réutilisable
 
-    productList.forEach(function (product) { // Je parcours mon tableau productList (les balises li)
+    //Dans le cas où j'utilise productList, la fonction sera : 'productList.forEach(function (product))'
+    parentElement.forEach(function (element) { // Je parcours mon tableau productList (les balises li)
 
-        product.classList.remove('active-style'); // Si l'un des produit a la classe 'active-style', je la supprime
+        element.classList.remove(style); // Si l'un des produit a la classe 'active-style', je la supprime
+    });
+}
+
+
+// setBigImageSrc()
+function setBigImageSrc(imgSrc) { //On lui passe la source de l'img cliquée en paramètre
+
+    const replace = imgSrc.replace('-thumbnail', ''); //Créé une copie de la src de la petite img (sans -thumbnail)
+
+    // On récupère toutes les images puis on les compare à replace (source de l'img cliquée)
+    carouselItem.forEach(function (item) {
+        const myImg = item.querySelector('img'); // Toutes les grandes images
+
+        if (myImg.getAttribute('src') === replace) { //On compare l'attribut de l'image à la string contenue dans replace
+
+            // Si l'une des images correspond à replace...
+            myImg.parentElement.classList.add('active'); //On remonte à l'élément parent pour lui ajouter la classe 'active'
+        }
     });
 }
 
 
 // CAROUSEL
-function makeCarouselVisible() {
+function makeCarouselVisible(imgSrc) {
+
+    removeClass('active', carouselItem); //style, parentElement
 
     // Images (grandes images)
     for (let carouselImageSrc = 0; carouselImageSrc < productsImages.length; carouselImageSrc++) {
@@ -113,33 +139,8 @@ function makeCarouselVisible() {
         carouselElements.carouselThumbnail[carouselThumbnailSrc].setAttribute('alt', productsImages[carouselThumbnailSrc].productThumbnailAlt);
     }
 
-
-
-    //Je fais une boucle for pour parcourir le tableau (querySelectorAll / NodeList) et ajouter les images au carousel
-    for (let image = 0; image < carouselElements.carouselImg.length; image++) {
-
-        carouselElements.carouselImage[image].setAttribute('src', productsImages[image].productImageSrc);
-        carouselElements.carouselImage[image].setAttribute('alt', productsImages[image].productImageAlt);
-
-
-        for (let getImage = 0; getImage < productsImages.length; getImage++) {
-
-            if (productsImages[getImage] === carouselElements[image]) {
-
-                carouselElements.carouselImage[image].setAttribute('src', productsImages[image].productImageSrc);
-                carouselElements.carouselImage[image].setAttribute('alt', productsImages[image].productImageAlt);
-
-            } else {
-                console.log('err');
-            }
-        }
-    }
-
-    // Il faut que l'image affichée sur le carousel soit la même que la petite image sur laquelle j'ai cliqué (balise img)
-    // Exemple: Voir si la grande et la petite image font parties du même objet (si leur objet ont le même id ou index)
-    // console.log(productsImages[0].id);
-
     carouselElements.carouselContainer.style.display = 'block';
+    setBigImageSrc(imgSrc); //Fonction qui va afficher la grande image (en fonction d ela petite image cliquée)
 
     // Code initial (for...in) 
     /*for (const imgThumbnail in productsImages) {
